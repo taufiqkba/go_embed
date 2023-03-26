@@ -7,13 +7,13 @@ import (
 	"io/ioutil"
 )
 
-//go:embed version.txt
+//go:embed test/version.txt
 var version string
 
-//go:embed logo.jpg
+//go:embed test/logo.jpg
 var logo []byte
 
-//go:embed files/*.txt
+//go:embed test/files/*.txt
 var path embed.FS
 
 func main() {
@@ -24,11 +24,11 @@ func main() {
 		panic(err)
 	}
 
-	dirEntry, _ := path.ReadDir("files")
+	dirEntry, _ := path.ReadDir("test/files")
 	for _, entry := range dirEntry {
 		if !entry.IsDir() {
 			fmt.Println(entry.Name())
-			file, _ := path.ReadFile("files/" + entry.Name())
+			file, _ := path.ReadFile("test/files/" + entry.Name())
 			fmt.Println(string(file))
 		}
 	}
