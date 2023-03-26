@@ -51,3 +51,19 @@ func TestMultipleFile(t *testing.T) {
 	c, _ := files.ReadFile("files/c.txt")
 	fmt.Println(string(c))
 }
+
+// Using Path Matcher
+//
+//go:embed files/*.txt
+var path embed.FS
+
+func TestPathMatcher(t *testing.T) {
+	dirEntry, _ := path.ReadDir("files")
+	for _, entry := range dirEntry {
+		if !entry.IsDir() {
+			fmt.Println(entry.Name())
+			file, _ := path.ReadFile("files/" + entry.Name())
+			fmt.Println(string(file))
+		}
+	}
+}
