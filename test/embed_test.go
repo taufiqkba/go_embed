@@ -1,4 +1,4 @@
-package go_embed
+package test
 
 import (
 	"embed"
@@ -32,7 +32,7 @@ func TestByteArray(t *testing.T) {
 
 // Embed multiple files
 //
-//go:embed files/a.txt
+//go:embed ./files/a.tx
 //go:embed files/b.txt
 //go:embed files/c.txt
 
